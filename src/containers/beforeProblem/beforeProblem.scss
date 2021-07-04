@@ -1,0 +1,40 @@
+.beforeproblemWrapper{
+    padding: 50% 20%;
+    height: 100%;
+    width: 100%; 
+    background-size: auto;
+    background-repeat: no-repeat;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-position: center;
+    display: flex; 
+    align-items: center;
+    .logo{
+        width: 100px; 
+        position: absolute;
+        top: 5%; 
+        left: 10%;
+    }
+    .card{
+        background-color: rgba(0,0,0,0.5);
+        color: white;
+        font-weight: 800;
+        font-size: 20px;
+    }
+
+
+    form{
+        width: 100%;
+
+        .cardWrapper{
+            height: 200px;
+            justify-content: center;
+            width: 100%;
+        }
+        button{
+            margin-top: 30px; 
+            background-color: rgba(0,0,0,0.5);
+            border: none; 
+        }
+    }
+}
