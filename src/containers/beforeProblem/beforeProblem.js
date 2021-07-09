@@ -13,10 +13,9 @@ const BeforeProblem = (props) => {
     const submitHandler=(e)=>{
         e.preventDefault()
         const nextNumber = parseInt(number) 
-        const docNumber = nextNumber +1
-        console.log("?????", docNumber)
+        console.log("?????", nextNumber)
         db.collection("quiz")
-        .doc(docNumber+"")
+        .doc(nextNumber+"")
         .get().then((doc)=>{
          const data = doc.data()
         
@@ -26,9 +25,9 @@ const BeforeProblem = (props) => {
         }
 
          const possible = data.possible
-
-            if(!possible){
-                const nextUrl = "/problem/" + nextNumber
+            console.log("possible", possible)
+            if(possible){
+                const nextUrl = "/problem/" + nextNumber 
                 props.history.push(nextUrl)                
             }else{
                 props.history.push("/notOpen")                

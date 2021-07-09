@@ -6,6 +6,9 @@ import Problem from './containers/problem/problem'
 import BeforeProblem from './containers/beforeProblem/beforeProblem'
 import Complete from './containers/complete/complete'
 import NotOpen from './containers/notOpen/notOpen'
+import Admin from "./containers/admin/admin"
+import ProblemStatus from "./containers/problemStatus/problemStatus"
+import Dashboard from './containers/dashboard/dashboard'
 
 function App() {
 
@@ -17,6 +20,9 @@ function App() {
             <Route path="/problem/:number" exact component={Problem} />
             <Route path="/complete" exact component={Complete} />
             <Route path="/notOpen" exact component={NotOpen} />
+            <Route path="/admin" exact component={Admin} />
+            <Route path="/admin/dashboard" exact component={Dashboard} />
+            <Route path="/admin/problemStatus" exact component={ProblemStatus} />
            </Switch>
     </div>
   );

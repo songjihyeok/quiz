@@ -28,6 +28,8 @@ const Login =(props)=>{
                 name: name
          }).then((doc)=>{
              window.localStorage.setItem("userId", doc.id)
+             window.localStorage.setItem("number", number)
+             window.localStorage.setItem("name", name)
              props.history.push("/beforeProblem/1")
          })
     }
