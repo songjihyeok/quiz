@@ -13,6 +13,7 @@ const NavbarReact =(props)=>{
         <Nav className="mr-auto">
         <Nav.Link href="/admin/problemStatus">문제</Nav.Link>
         <Nav.Link href="/admin/dashboard">접수 현황</Nav.Link>
+        <Nav.Link href="/admin/users">유저</Nav.Link>
         </Nav>
     </Navbar.Collapse>
     </Navbar>

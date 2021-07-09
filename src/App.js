@@ -9,6 +9,7 @@ import NotOpen from './containers/notOpen/notOpen'
 import Admin from "./containers/admin/admin"
 import ProblemStatus from "./containers/problemStatus/problemStatus"
 import Dashboard from './containers/dashboard/dashboard'
+import Users from './containers/users/users'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
             <Route path="/notOpen" exact component={NotOpen} />
             <Route path="/admin" exact component={Admin} />
             <Route path="/admin/dashboard" exact component={Dashboard} />
+            <Route path="/admin/users" exact component={Users} />
             <Route path="/admin/problemStatus" exact component={ProblemStatus} />
            </Switch>
     </div>

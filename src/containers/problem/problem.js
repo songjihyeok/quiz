@@ -44,11 +44,13 @@ const Problem = (props) => {
       });
   }, []);
 
-  const nextProblemHandler = () => {
+  const nextProblemHandler = async() => {
     const userId = window.localStorage.getItem("userId");
     const number = window.localStorage.getItem("number");
     const name = window.localStorage.getItem("name");
-
+    let proportion = 1
+    let answer = 1
+    let isRight = false
     db.collection("quiz")
       .doc(problemNumber)
       .collection("solving")
@@ -62,9 +64,52 @@ const Problem = (props) => {
         { merge: true }
       )
       .then((doc) => {
-        
-        console.log("success", doc);
       });
+
+      await db.collection("quiz")
+      .doc(problemNumber)
+      .get()
+      .then((doc) => {
+        console.log("success!!!!!", doc.data());
+        answer = doc.data().answer
+      });
+
+      console.log("answer", answer)
+      isRight = parseInt(answer) + 1 == selected.split("-")[1]
+       console.log("isRight", isRight) 
+
+      await db.collection("user")
+      .doc(userId)
+      .get().then((doc)=>{
+        console.log("DDDDDDDD",doc.data())
+        if(!doc.data().proportion){
+          proportion = 1
+        }else{
+          proportion = doc.data().proportion
+        }
+      })
+
+
+    if(isRight){
+      proportion = (proportion * (problemNumber-1) +1 ) / problemNumber
+    } else{
+      proportion =  proportion * (problemNumber-1) /problemNumber
+    }
+
+      db.collection("user")
+      .doc(userId)
+      .set(
+        {
+          number: number,
+          name: name,
+          finishedProblem: problemNumber,
+          proportion: proportion
+        },
+        { merge: true }
+      )
+      .then((doc) => {
+        console.log("success", doc);
+      });  
 
     const nextNumber = parseInt(problemNumber) + 1;
     const nextUrl = "/beforeProblem/" + nextNumber;
