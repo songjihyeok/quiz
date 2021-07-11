@@ -48,6 +48,17 @@ const ProblemStatus =(props)=>{
     }
 
 
+    useEffect(()=>{
+        const userId = window.localStorage.getItem("user")
+        if(!userId){
+            props.history.push("/admin")
+        }
+    })
+
+
+
+
+
 
     return <div  className="problemStatusWrapper">
         <Navbar></Navbar>

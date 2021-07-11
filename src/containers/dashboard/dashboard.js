@@ -36,6 +36,12 @@ const Dashboard =(props)=>{
         })
     }
 
+    useEffect(()=>{
+        const userId = window.localStorage.getItem("user")
+        if(!userId){
+            props.history.push("/admin")
+        }
+    })
 
 
 
