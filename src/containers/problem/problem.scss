@@ -1,10 +1,10 @@
 .problemWrapper{
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-size: auto;
-    background-repeat: no-repeat;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-position: center;
@@ -12,7 +12,7 @@
         background-color: rgba(0,0,0,0.5);
         color: white;
         font-size: 20px;
-        width: 80%!important;
+        width: 87%!important;
     }
     .logo{
         width: 100px; 
@@ -45,7 +45,8 @@
         display: flex;
         width: 100%; 
         margin: 10px 0;
-        height: auto;
+        // max-height: 450px;
+        overflow-y: scroll;
         flex-direction: column;
         align-items: left;
     
@@ -54,23 +55,27 @@
             align-items: center;
             background-repeat: no-repeat;
             text-align: left;
-            margin: -8px 0;
+            margin: -10px 0;
             margin-right: 5px; 
-            height:80px; 
+            height:100px; 
 
             .selectInput{
                 padding-left: 7px;
                 font-size: 30px; 
+                padding-bottom:5px; 
                 color: #f47941;
                 width:80px;
                 display:flex;
+                padding-left: 5px; 
                 justify-content: center;
                 align-items: center;
             }
             .number{
-                padding-top: 5px;
-                height: 100%;
-                font-size:17px;
+                max-width: 200px; 
+                height: 100%; 
+                padding-right: 5px; 
+                font-size:16px;
+                justify-content: center;
                 display: flex;
                 align-items: center;
          

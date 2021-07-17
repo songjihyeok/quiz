@@ -5,7 +5,7 @@ import firebase from "../../firebaseConfig";
 import Background from "../assets/background.jpeg";
 import Logo from "../assets/logo.png";
 import title from "../assets/title.png";
-import inputImage from "../assets/button.png";
+import inputImage from "../assets/long.png";
 import ReactLoading from "react-loading";
 
 const Problem = (props) => {
@@ -114,7 +114,9 @@ const Problem = (props) => {
     const nextNumber = parseInt(problemNumber) + 1;
     const nextUrl = "/beforeProblem/" + nextNumber;
     props.history.push(nextUrl);
-  };
+  };  
+
+  console.log("???", problemNumber -2)
 
   return (
     <div
@@ -136,8 +138,7 @@ const Problem = (props) => {
               <div
                 className="problemTitle"
                 style={{ backgroundImage: `url(${title})` }}
-              >
-                문제 {problemNumber}번
+              > {problemNumber == 1 || problemNumber == 2 ? "연습 문제 " +  problemNumber +"번" : " 문제 " + (parseInt(problemNumber)-2) + "번" }
               </div>
 
               {text.map((element) => {

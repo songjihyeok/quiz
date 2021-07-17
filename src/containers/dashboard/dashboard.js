@@ -48,7 +48,12 @@ const Dashboard =(props)=>{
     return <div  className="problemStatusWrapper">
             <Navbar></Navbar>
             {problemnumbers.map((element)=>{
-                return <Button variant="secondary" onClick={()=>getData(element)}>{element}</Button>
+                if(element == 1 || element == 2 ){
+                    return <Button variant="secondary" onClick={()=>getData(element)}>연습문제 {element}</Button>
+                }else{
+                    return <Button variant="secondary" onClick={()=>getData(element)}>{element -2 }</Button>
+                }
+
             })}
             <div className="statusWrapper">
           <ListGroup horizontal={'xl'} className="my-2">

@@ -70,8 +70,16 @@ const ProblemStatus =(props)=>{
                 <ListGroup.Item className="possible">오픈여부</ListGroup.Item>
             </ListGroup>
             {problems.map((element)=>{
+
+                let number = element.number -2 
+
+                if(element.number ==2 || element.number == 1){
+                    number = "연습" + element.number
+                }
+
+
                 return <ListGroup horizontal={'xl'} className="my-2"  key={element.number}>
-                <ListGroup.Item className="number">{element.number}</ListGroup.Item>
+                <ListGroup.Item className="number">{number}</ListGroup.Item>
                 <ListGroup.Item className="text">{element.text.reduce((a,c)=> a+=c)}</ListGroup.Item>
                 <ListGroup.Item className="number">{element.answer +1 }</ListGroup.Item>
                 <ListGroup.Item onClick={()=>possibleHandler(element)}className="possible">{element.possible? "열림" : "꺼짐"}</ListGroup.Item>
