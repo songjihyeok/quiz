@@ -30,7 +30,7 @@ const Login =(props)=>{
              window.localStorage.setItem("userId", doc.id)
              window.localStorage.setItem("number", number)
              window.localStorage.setItem("name", name)
-             props.history.push("/beforeProblem/1")
+             props.history.push("/beforeProblem/3")
          })
     }
     

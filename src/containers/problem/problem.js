@@ -16,7 +16,7 @@ const Problem = (props) => {
   const [choice, setChoice] = useState([]);
   const [possible, setPossible] = useState(false);
   const [loading, setLoading] = useState(false);
-  const problemNumber = window.location.href.split("/problem/")[1];
+  const problemNumber =  window.location.href.split("/problem/")[1];
 
   useEffect(() => {
     db.collection("quiz")
@@ -51,6 +51,7 @@ const Problem = (props) => {
     let proportion = 1
     let answer = 1
     let isRight = false
+
     db.collection("quiz")
       .doc(problemNumber)
       .collection("solving")
@@ -73,50 +74,51 @@ const Problem = (props) => {
         console.log("success!!!!!", doc.data());
         answer = doc.data().answer
       });
-
-      console.log("answer", answer)
       isRight = parseInt(answer) + 1 == selected.split("-")[1]
-       console.log("isRight", isRight) 
-
       await db.collection("user")
       .doc(userId)
       .get().then((doc)=>{
-        console.log("DDDDDDDD",doc.data())
         if(!doc.data().proportion){
           proportion = 1
         }else{
+          let finishedNumber =   parseInt(doc.data().finishedProblem)
+          if(finishedNumber >= parseInt(problemNumber)){
+            alert("뒤로 돌아가서 문제 풀수 없습니다. 순서대로 진행해주세요.")
+            const nextNumber = parseInt(doc.data().finishedProblem)+1
+            const nextUrl = "/beforeProblem/" + nextNumber  
+            props.history.push(nextUrl);
+            return 
+          }
           proportion = doc.data().proportion
         }
+        if(isRight){
+          proportion = (proportion * (problemNumber-1) +1 ) / problemNumber
+        } else{
+          proportion =  proportion * (problemNumber-1) /problemNumber
+        }
+          db.collection("user")
+          .doc(userId)
+          .set(
+            {
+              number: number,
+              name: name,
+              finishedProblem: problemNumber,
+              proportion: proportion
+            },
+            { merge: true }
+          )
+          .then((doc) => {
+            console.log("success", doc);
+          });  
+    
+        const nextNumber = parseInt(problemNumber) + 1;
+        const nextUrl = "/beforeProblem/" + nextNumber;
+        props.history.push(nextUrl);
       })
 
 
-    if(isRight){
-      proportion = (proportion * (problemNumber-1) +1 ) / problemNumber
-    } else{
-      proportion =  proportion * (problemNumber-1) /problemNumber
-    }
-
-      db.collection("user")
-      .doc(userId)
-      .set(
-        {
-          number: number,
-          name: name,
-          finishedProblem: problemNumber,
-          proportion: proportion
-        },
-        { merge: true }
-      )
-      .then((doc) => {
-        console.log("success", doc);
-      });  
-
-    const nextNumber = parseInt(problemNumber) + 1;
-    const nextUrl = "/beforeProblem/" + nextNumber;
-    props.history.push(nextUrl);
+   
   };  
-
-  console.log("???", problemNumber -2)
 
   return (
     <div

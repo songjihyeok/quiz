@@ -18,7 +18,7 @@ const BeforeProblem = (props) => {
         .doc(nextNumber+"")
         .get().then((doc)=>{
          const data = doc.data()
-        
+            
          if(data == undefined){
             props.history.push("/complete")
             return
